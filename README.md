@@ -10,27 +10,41 @@
 
 ## 使用方法
 
-### 创建活动 / 上传封面 / 获取活动详情 (http://e.vhall.com/home/vhallapi/active#webinar_create_创建活动)
+### 创建活动 / 上传封面 / 获取活动详情 (http://e.vhall.com/home/vhallapi/active)
 
 具体实例见src/TestSdk
 
 ```java
 HashMap<String, Object> configMap = new HashMap<String, Object>();
-configMap.put("app_key", "xxxxxxxxxx"); // app_key 请像技服人员申请
-configMap.put("secret_key", "xxxxxxxxxx");  // secret_key 请像技服人员申请
+
+// app_key secret_key 请像技服人员申请
+configMap.put("app_key", "xxxxxxxxxx");
+configMap.put("secret_key", "xxxxxxxxxx");
+
+// API请求域名，如无特殊情况，使用下面配置即可
 configMap.put("request_domain", "http://e.vhall.com");
 
-Webinar webinarObj = new Webinar(configMap); // 按API前缀实例化对象
+// 按API前缀实例化对象
+Webinar webinarObj = new Webinar(configMap);
 
-HashMap<String, Object> paramCreate = new HashMap<String, Object>(); // 创建活动参数初始化
-HashMap<String, Object> paramActiveImage = new HashMap<String, Object>(); // 上传封面参数初始化
-HashMap<String, Object> paramFetch = new HashMap<String, Object>(); // 获取活动详情参数初始化
+// 创建活动参数初始化
+HashMap<String, Object> paramCreate = new HashMap<String, Object>();
 
-paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10)); // 时间固定格式为10位长度时间戳
-paramCreate.put("subject", "take a test again"); // 设定标签
+// 上传封面参数初始化
+HashMap<String, Object> paramActiveImage = new HashMap<String, Object>();
+
+ // 获取活动详情参数初始化
+HashMap<String, Object> paramFetch = new HashMap<String, Object>();
+
+// 时间固定格式为10位长度时间戳
+paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10));
+
+// 设定活动主题
+paramCreate.put("subject", "take a test again");
 
 try {
-	String resultCreate = webinarObj.create(paramCreate); // 获取返回值为
+	// 获取创建活动返回值，返回值统一使用String类型接收
+	String resultCreate = webinarObj.create(paramCreate);
 
 	// 请使用绝对路径获取文件
 	paramActiveImage.put("image", new File("").getAbsolutePath() + "/resources/vhall.png");
@@ -38,11 +52,13 @@ try {
 
 	String resultActiveImage = webinarObj.activeimage(paramActiveImage);
 
-	paramFetch.put("webinar_id", JsonPath.read(resultCreate, "$.data"));  // 新创建的活动ID直接放入请求参数中
+	// 新创建的活动ID直接放入请求参数中
+	paramFetch.put("webinar_id", JsonPath.read(resultCreate, "$.data"));
 	paramFetch.put("fields", "subject, start_time");
 
 	String resultFetch = webinarObj.fetch(paramFetch);
 
+	// 使用jsonPath 直接获取返回值
 	webinarObj.dump(JsonPath.read(resultCreate, "$.data"));
 	webinarObj.dump(JsonPath.read(resultActiveImage, "$.data"));
 	webinarObj.dump(JsonPath.read(resultFetch, "$.data"));
