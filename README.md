@@ -1,6 +1,5 @@
 # Vhall Web SDK for JAVA
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
-[![Latest Stable Version](https://img.shields.io/packagist/v/vhall/web_sdk_php.svg)](https://packagist.org/packages/vhall/web_sdk)
 
 ## 安装
 * 下载项目目录下 libs/vhall_api_java_sdk-1.0.jar 文件，引入项目，加载为Libary
