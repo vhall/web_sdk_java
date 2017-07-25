@@ -10,7 +10,8 @@
 
 ## 使用方法
 
-### 上传
+### 创建活动 / 上传封面 / 获取活动详情 (http://e.vhall.com/home/vhallapi/active#webinar_create_创建活动)
+
 具体实例见src/TestSdk
 
 ```java
