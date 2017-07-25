@@ -11,8 +11,6 @@
 
 ### 创建活动 / 上传封面 / 获取活动详情 (http://e.vhall.com/home/vhallapi/active)
 
-具体实例见src/TestSdk
-
 ```java
 HashMap<String, Object> configMap = new HashMap<String, Object>();
 
@@ -70,7 +68,7 @@ try {
 ## 常见问题
 
 - 文件不存在，请确保上传的封面文件路径是否正确
-- API 的使用 demo 可以参考 (https://github.com/vhall/web_sdk_java/src/TestSdk)。
+- SDK的使用 demo 可以参考 (https://github.com/vhall/web_sdk_java/src/TestSdk)。
 - 该SDK请和微吼API配合使用，具体使用参数请参考(https://e.vhall.com/home/vhallapi/)。
 
 
@@ -78,12 +76,11 @@ try {
 
 - 如果需要帮助，请提交工单（直接向 yan.gao@vhall.com 发送邮件）
 - 更详细的文档，见[官方文档站](http://e.vhall.com/home/vhallapi)
-- 如果发现了bug， 欢迎提交 [issue](https://github.com/vhall/web_sdk_php/issues)
-- 如果有功能需求，欢迎提交 [issue](https://github.com/vhall/web_sdk_php/issues)
+- 如果发现了bug， 欢迎提交 [issue](https://github.com/vhall/web_sdk_java/issues)
+- 如果有功能需求，欢迎提交 [issue](https://github.com/vhall/web_sdk_java/issues)
 
 ## 代码许可
 
-The MIT License (MIT).详情见 [License文件](https://github.com/vhall/web_sdk_php/blob/master/LICENSE).
+The MIT License (MIT).详情见 [License文件](https://github.com/vhall/web_sdk_java/blob/master/LICENSE).
 
-[packagist]: http://packagist.org
-[install-packagist]: https://packagist.org/packages/vhall/web_sdk_php
+[install-packagist]: https://packagist.org/packages/vhall/web_sdk_java
