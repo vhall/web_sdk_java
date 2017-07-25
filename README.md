@@ -1,11 +1,12 @@
 # Vhall Web SDK for JAVA
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
 
-## 安装
+## 安装&使用
 * 下载项目目录下 libs/vhall_api_java_sdk-1.0.jar 文件，引入项目，加载为Libary
 * 项目添加了jsonPath包，可以直接按path取值
 * 项目开始前，请确保已经申请了app_key 和 secret_key 否则得到一个身份验证失败的异常
 * 参数文件统一为HashMap<String, Object> 结构
+* SDK实现了所有微吼API方法，具体方法请参见 vhall_api_java_sdk-1.0.jar -> vhall/*
 
 ## 使用方法
 
