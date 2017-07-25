@@ -13,40 +13,40 @@
 具体实例见src/TestSdk
 
 ```java
-	HashMap<String, Object> configMap = new HashMap<String, Object>();
-	configMap.put("app_key", "xxxxxxxxxx"); // app_key 请像技服人员申请
-	configMap.put("secret_key", "xxxxxxxxxx");  // secret_key 请像技服人员申请
-	configMap.put("request_domain", "http://e.vhall.com");
+HashMap<String, Object> configMap = new HashMap<String, Object>();
+configMap.put("app_key", "xxxxxxxxxx"); // app_key 请像技服人员申请
+configMap.put("secret_key", "xxxxxxxxxx");  // secret_key 请像技服人员申请
+configMap.put("request_domain", "http://e.vhall.com");
 
-	Webinar webinarObj = new Webinar(configMap); // 按API前缀实例化对象
+Webinar webinarObj = new Webinar(configMap); // 按API前缀实例化对象
 
-	HashMap<String, Object> paramCreate = new HashMap<String, Object>(); // 创建活动参数初始化
-	HashMap<String, Object> paramActiveImage = new HashMap<String, Object>(); // 上传封面参数初始化
-	HashMap<String, Object> paramFetch = new HashMap<String, Object>(); // 获取活动详情参数初始化
+HashMap<String, Object> paramCreate = new HashMap<String, Object>(); // 创建活动参数初始化
+HashMap<String, Object> paramActiveImage = new HashMap<String, Object>(); // 上传封面参数初始化
+HashMap<String, Object> paramFetch = new HashMap<String, Object>(); // 获取活动详情参数初始化
 
-	paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10)); // 时间固定格式为10位长度时间戳
-	paramCreate.put("subject", "take a test again"); // 设定标签
+paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10)); // 时间固定格式为10位长度时间戳
+paramCreate.put("subject", "take a test again"); // 设定标签
 
-	try {
-		String resultCreate = webinarObj.create(paramCreate); // 获取返回值为
+try {
+	String resultCreate = webinarObj.create(paramCreate); // 获取返回值为
 
-		// 请使用绝对路径获取文件
-		paramActiveImage.put("image", new File("").getAbsolutePath() + "/resources/vhall.png");
-		paramActiveImage.put("webinar_id", JsonPath.read(resultCreate, "$.data"));
+	// 请使用绝对路径获取文件
+	paramActiveImage.put("image", new File("").getAbsolutePath() + "/resources/vhall.png");
+	paramActiveImage.put("webinar_id", JsonPath.read(resultCreate, "$.data"));
 
-		String resultActiveImage = webinarObj.activeimage(paramActiveImage);
+	String resultActiveImage = webinarObj.activeimage(paramActiveImage);
 
-		paramFetch.put("webinar_id", JsonPath.read(resultCreate, "$.data"));  // 新创建的活动ID直接放入请求参数中
-		paramFetch.put("fields", "subject, start_time");
+	paramFetch.put("webinar_id", JsonPath.read(resultCreate, "$.data"));  // 新创建的活动ID直接放入请求参数中
+	paramFetch.put("fields", "subject, start_time");
 
-		String resultFetch = webinarObj.fetch(paramFetch);
+	String resultFetch = webinarObj.fetch(paramFetch);
 
-		webinarObj.dump(JsonPath.read(resultCreate, "$.data"));
-		webinarObj.dump(JsonPath.read(resultActiveImage, "$.data"));
-		webinarObj.dump(JsonPath.read(resultFetch, "$.data"));
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
+	webinarObj.dump(JsonPath.read(resultCreate, "$.data"));
+	webinarObj.dump(JsonPath.read(resultActiveImage, "$.data"));
+	webinarObj.dump(JsonPath.read(resultFetch, "$.data"));
+} catch (Exception e) {
+	e.printStackTrace();
+}
 ```
 
 
