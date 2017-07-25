@@ -6,6 +6,7 @@
 * 下载项目目录下 libs/vhall_api_java_sdk-1.0.jar 文件，引入项目，加载为Libary
 * 项目添加了jsonPath包，可以直接按path取值
 * 项目开始前，请确保已经申请了app_key 和 secret_key 否则得到一个身份验证失败的异常
+* 参数文件统一为HashMap<String, Object> 结构
 
 ## 使用方法
 
@@ -52,7 +53,7 @@ try {
 
 ## 常见问题
 
-- 文件不错在，请确保上传的封面文件路径是否正确
+- 文件不存在，请确保上传的封面文件路径是否正确
 - API 的使用 demo 可以参考 (https://github.com/vhall/web_sdk_java/src/TestSdk)。
 - 该SDK请和微吼API配合使用，具体使用参数请参考(https://e.vhall.com/home/vhallapi/)。
 
