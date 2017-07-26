@@ -68,9 +68,9 @@ try {
 
 ## 常见问题
 
-- 文件不存在，请确保上传的封面文件路径是否正确。
 - 身份验证失败，请确保app_key&secret_key是否正确填写
 - 会员已失效, 请确保当前app_key对应的使用用户为微吼有效会员
+- 文件不存在，请确保上传的封面文件路径是否正确。
 - SDK的使用 demo 可以参考 (https://github.com/vhall/web_sdk_java/src/TestSdk)。
 - 该SDK请和微吼API配合使用，具体使用参数请参考(https://e.vhall.com/home/vhallapi/)。
 
