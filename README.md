@@ -15,7 +15,7 @@
 ```java
 HashMap<String, Object> configMap = new HashMap<String, Object>();
 
-// app_key secret_key 请像技服人员申请
+// app_key secret_key 请向技服人员申请
 configMap.put("app_key", "xxxxxxxxxx");
 configMap.put("secret_key", "xxxxxxxxxx");
 
