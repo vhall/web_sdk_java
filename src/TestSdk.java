@@ -18,13 +18,16 @@ public class TestSdk {
         HashMap<String, Object> paramCreate = new HashMap<String, Object>();
         HashMap<String, Object> paramActiveImage = new HashMap<String, Object>();
         HashMap<String, Object> paramFetch = new HashMap<String, Object>();
+        HashMap<String, Object> paramList = new HashMap<>();
 
         paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10)); // 时间固定格式为10位长度时间戳
         paramCreate.put("subject", "take a test again");
 
         try {
-            String resultCreate = webinarObj.create(paramCreate);
+            String resultList = webinarObj.list(paramList);
+            webinarObj.dump(resultList);
 
+            String resultCreate = webinarObj.create(paramCreate);
             // 请使用绝对路径获取文件
             paramActiveImage.put("image", new File("").getAbsolutePath() + "/resources/vhall.png");
             paramActiveImage.put("webinar_id", JsonPath.read(resultCreate, "$.data"));
