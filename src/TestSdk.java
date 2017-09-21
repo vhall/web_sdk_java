@@ -1,4 +1,5 @@
 import com.jayway.jsonpath.JsonPath;
+import vhall.User;
 import vhall.Webinar;
 
 import java.io.File;
@@ -14,18 +15,25 @@ public class TestSdk {
         configMap.put("request_domain", "http://e.vhall.com");
 
         Webinar webinarObj = new Webinar(configMap);
+        User userObj = new User(configMap);
 
         HashMap<String, Object> paramCreate = new HashMap<String, Object>();
         HashMap<String, Object> paramActiveImage = new HashMap<String, Object>();
         HashMap<String, Object> paramFetch = new HashMap<String, Object>();
         HashMap<String, Object> paramList = new HashMap<>();
+        HashMap<String, Object> paramCreateUser = new HashMap<>();
 
         paramCreate.put("start_time", webinarObj.toString(new Date().getTime()).substring(0,10)); // 时间固定格式为10位长度时间戳
         paramCreate.put("subject", "take a test again");
+        paramCreateUser.put("third_user_id", "vhall_sdk_test");
+         paramCreateUser.put("pass", "gaoyansing");
 
         try {
             String resultList = webinarObj.list(paramList);
             webinarObj.dump(resultList);
+
+            String resultCreateUser = userObj.register(paramCreateUser);
+            webinarObj.dump(resultCreateUser);
 
             String resultCreate = webinarObj.create(paramCreate);
             // 请使用绝对路径获取文件
