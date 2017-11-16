@@ -12,7 +12,7 @@ public class TestSdk {
         HashMap<String, Object> configMap = new HashMap<String, Object>();
         configMap.put("app_key", "dc16c76acfd9b0a82fb3f3039d7bcfe7"); // app_key 请像技服人员申请
         configMap.put("secret_key", "1052ffd2b5c33283e90093dbbe706607");  // secret_key 请像技服人员申请
-        configMap.put("request_domain", "http://t.e.vhall.com");
+        configMap.put("request_domain", "http://d.vhall.com");
 
         Webinar webinarObj = new Webinar(configMap);
         User userObj = new User(configMap);
@@ -23,11 +23,14 @@ public class TestSdk {
         HashMap<String, Object> paramList = new HashMap<>();
         HashMap<String, Object> paramCreateUser = new HashMap<String, Object>();
         HashMap<String, Object> paramCurrent = new HashMap<String, Object>();
+        HashMap<String, Object> paramReport = new HashMap<String, Object>();
+        paramReport.put("webinar_id", 483868602);
+        paramReport.put("time_span", 4);
 
         paramCreate.put("start_time", "123456789");
         paramCreate.put("subject", "take a test");
 
-        paramCreateUser.put("third_user_id", "third_sdk_test_2");
+        paramCreateUser.put("third_user_id", "third_sdk_test_3");
         paramCreateUser.put("pass", "gaoyansing");
         paramCreateUser.put("local_head", new File("").getAbsolutePath() + "/resources/vhall.png");
         paramCurrent.put("begintime", "2016-7-12 10:12:11");
@@ -36,6 +39,9 @@ public class TestSdk {
 
 
         try {
+            String resultReport = webinarObj.report(paramReport, true);
+            Webinar.dump(resultReport);
+
             String resultList = userObj.register(paramCreateUser);
             String result = userObj.update(paramCreateUser);
             userObj.dump(resultList);
@@ -47,7 +53,7 @@ public class TestSdk {
             userObj.dump(concurrentDate);
 
             String resultCreateUser = userObj.register(paramCreateUser);
-            webinarObj.dump(resultCreateUser);
+            webinarObj.dump(JsonPath.read(resultCreateUser, "$.data.avatar"));
 
             String resultCreate = webinarObj.create(paramCreate);
 //            // 请使用绝对路径获取文件
