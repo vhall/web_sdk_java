@@ -14,6 +14,10 @@ public class WebinarTest {
     {
         webinarObj = new Webinar(Config.getConfig());
         try {
+            testInstantStateBatch("100453984,109525212,114269160,119077950,119347157,120402054,121835920,123617675," +
+                    "129860058,133442551,136246359,137650327,143320440,159199353,164970438,166420259", "2015/01/01 01:01:01");
+            testConcurrencyBatch("100453984,109525212,114269160,119077950,119347157,120402054,121835920,123617675," +
+                    "129860058,133442551,136246359,137650327,143320440,159199353,164970438,166420259", "2015/01/01 01:01:01");
             testCreate();
             testReport(483868602);
             testActiveImage(483868602);
@@ -54,5 +58,26 @@ public class WebinarTest {
         String resultActiveImage = webinarObj.activeimage(paramActiveImage);
 
         webinarObj.dump(JsonPath.read(resultActiveImage, "$.data"));
+    }
+
+    public static void testInstantStateBatch(String wids, String lastTime) throws Exception
+    {
+        HashMap<String, Object> paraminstantStateBatch = new HashMap<String, Object>();
+        paraminstantStateBatch.put("wids", wids);
+        paraminstantStateBatch.put("last_time", lastTime);
+
+        String resultInstantStateBatch = webinarObj.instantStateBatch(paraminstantStateBatch, true);
+
+        webinarObj.dump(resultInstantStateBatch);
+    }
+
+    public static void testConcurrencyBatch(String wids, String lastTime) throws Exception
+    {
+        HashMap<String, Object> paramConcurrencyBatch = new HashMap<String, Object>();
+        paramConcurrencyBatch.put("wids", wids);
+        paramConcurrencyBatch.put("last_time", lastTime);
+
+        String resultConcurrencyBatch = webinarObj.concurrencyBatch(paramConcurrencyBatch, true);
+        webinarObj.dump(resultConcurrencyBatch);
     }
 }
